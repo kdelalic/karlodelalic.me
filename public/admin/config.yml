@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  repo: kdelalic/karlodelalic.com-gatsby
+  repo: kdelalic/karlodelalic.me
   branch: master
 
 media_folder: static/img

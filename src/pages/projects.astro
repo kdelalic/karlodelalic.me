@@ -1,60 +1,69 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Project from '../components/Project';
+import { getCollection } from "astro:content"
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Header from "../components/Header.astro"
+import Project from "../components/Project"
 
-const projects = await getCollection('projects');
+const projects = await getCollection("projects")
 
 // Get all tech logos from the public directory
-const techLogosPath = '/tech-logos/';
+const techLogosPath = "/tech-logos/"
 const techLogos = {
-  'reactjs': `${techLogosPath}reactjs.svg`,
-  'nodejs': `${techLogosPath}nodejs.svg`,
-  'firebase': `${techLogosPath}firebase.svg`,
-  'material ui': `${techLogosPath}material ui.svg`,
-  'socket.io': `${techLogosPath}socket.io.svg`,
-  'docker': `${techLogosPath}docker.svg`,
-  'sass': `${techLogosPath}sass.svg`,
-  'gatsby': `${techLogosPath}gatsbyjs.svg`,
-  'gatsbyjs': `${techLogosPath}gatsbyjs.svg`,
-  'redux': `${techLogosPath}redux.svg`,
-  'latex': `${techLogosPath}latex.svg`,
-  'travis-ci': `${techLogosPath}travis-ci.svg`,
-  'preact': `${techLogosPath}preact.svg`,
-  'aws': `${techLogosPath}aws.svg`,
-  'azure': `${techLogosPath}azure.svg`,
-  'golang': `${techLogosPath}golang.svg`,
-  'arduino': `${techLogosPath}arduino.svg`,
-};
+  reactjs: `${techLogosPath}reactjs.svg`,
+  nodejs: `${techLogosPath}nodejs.svg`,
+  firebase: `${techLogosPath}firebase.svg`,
+  "material ui": `${techLogosPath}material ui.svg`,
+  "socket.io": `${techLogosPath}socket.io.svg`,
+  docker: `${techLogosPath}docker.svg`,
+  sass: `${techLogosPath}sass.svg`,
+  astro: `${techLogosPath}astro.svg`,
+  redux: `${techLogosPath}redux.svg`,
+  latex: `${techLogosPath}latex.svg`,
+  "travis-ci": `${techLogosPath}travis-ci.svg`,
+  preact: `${techLogosPath}preact.svg`,
+  aws: `${techLogosPath}aws.svg`,
+  azure: `${techLogosPath}azure.svg`,
+  golang: `${techLogosPath}golang.svg`,
+  arduino: `${techLogosPath}arduino.svg`,
+}
 
-const keywords = ['karlo delalic', 'portfolio', 'distributed systems', 'software engineer', 'projects', 'technology'];
+const keywords = [
+  "karlo delalic",
+  "portfolio",
+  "distributed systems",
+  "software engineer",
+  "projects",
+  "technology",
+]
 ---
 
 <BaseLayout title="Projects" keywords={keywords}>
   <Header slot="header" />
   <div class="projects">
-    {projects.map(project => {
-      let projectLogoSrc = undefined;
-      if (project.data.projectLogo) {
-        const logoFilename = typeof project.data.projectLogo === 'string'
-          ? project.data.projectLogo
-          : project.data.projectLogo.src.split('/').pop();
-        projectLogoSrc = `/projects/${project.slug}/${logoFilename}`;
-      }
-      return (
-        <Project
-          client:load
-          key={project.id}
-          description={project.data.description}
-          github={project.data.github}
-          technologies={project.data.technologies || []}
-          title={project.data.title}
-          demo={project.data.demo}
-          techLogos={techLogos}
-          projectLogo={projectLogoSrc}
-        />
-      );
-    })}
+    {
+      projects.map((project) => {
+        let projectLogoSrc = undefined
+        if (project.data.projectLogo) {
+          const logoFilename =
+            typeof project.data.projectLogo === "string"
+              ? project.data.projectLogo
+              : project.data.projectLogo.src.split("/").pop()
+          projectLogoSrc = `/projects/${project.slug}/${logoFilename}`
+        }
+        return (
+          <Project
+            client:load
+            key={project.id}
+            description={project.data.description}
+            github={project.data.github}
+            technologies={project.data.technologies || []}
+            title={project.data.title}
+            demo={project.data.demo}
+            techLogos={techLogos}
+            projectLogo={projectLogoSrc}
+          />
+        )
+      })
+    }
   </div>
 </BaseLayout>
