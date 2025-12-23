@@ -1,0 +1,96 @@
+@use "../globals/base" as *;
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recipes {
+  margin: auto;
+  padding-bottom: 25px;
+  columns: 3 auto;
+  column-gap: 50px;
+  margin-top: 40px;
+
+  @media all and (max-width: $width-max) {
+    columns: 2 auto;
+  }
+
+  @media all and (max-width: $width-large) {
+    columns: 1 auto;
+  }
+
+  .recipe-wrapper {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+.searchContainer {
+  width: 33%;
+  display: flex;
+  margin-bottom: 15px;
+
+  @media all and (max-width: $width-max) {
+    width: 50%;
+  }
+
+  @media all and (max-width: $width-large) {
+    width: 100%;
+  }
+
+  & .MuiFormControl-root {
+    width: 100%;
+  }
+
+  & .MuiOutlinedInput-root {
+    border-radius: 30px;
+    width: 100%;
+
+    & fieldset {
+      border-color: #2ebf91;
+    }
+
+    &:hover fieldset {
+      border-color: #2ebf91;
+    }
+
+    &.Mui-focused fieldset {
+      border-color: #2ebf91;
+    }
+  }
+
+  & .MuiOutlinedInput-input {
+    height: 32px;
+    padding: 0 14px;
+    color: black;
+    font-family: 'Avenir Next', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+
+    .#{$dark-class} & {
+      color: white;
+    }
+  }
+
+  & .MuiInputLabel-outlined {
+    line-height: 32px;
+    transform: translate(14px, 0px) scale(1);
+    font-family: 'Avenir Next', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+
+    .#{$dark-class} & {
+      color: white;
+    }
+  }
+
+  & .MuiInputLabel-outlined.MuiInputLabel-shrink {
+    transform: translate(14px, -12px) scale(0.75);
+    color: #2ebf91;
+  }
+
+  & .MuiInputAdornment-root {
+    color: black;
+
+    .#{$dark-class} & {
+      color: white;
+    }
+  }
+}

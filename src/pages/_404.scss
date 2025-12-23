@@ -1,0 +1,7 @@
+@use "../globals/base" as *;
+
+.page-not-found {
+  .#{$dark-class} & {
+    color: white;
+  }
+}

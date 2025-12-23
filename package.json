@@ -1,0 +1,62 @@
+{
+  "name": "karlodelalic.me",
+  "private": true,
+  "description": "A personal portfolio website.",
+  "version": "0.1.0",
+  "author": "Karlo Delalic",
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/rss": "^4.0.14",
+    "@astrojs/sitemap": "^3.6.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^7.3.6",
+    "astro": "^5.16.5",
+    "decap-cms-app": "^3.3.3",
+    "fuse.js": "^7.0.0",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.0",
+    "react-intersection-observer": "^9.16.0",
+    "sass": "^1.96.0"
+  },
+  "devDependencies": {
+    "husky": "9.1.7",
+    "lint-staged": "15.5.2",
+    "prettier": "3.7.3"
+  },
+  "keywords": [
+    "karlo delalic",
+    "astro",
+    "software engineer",
+    "personal website"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "./build.sh && astro build",
+    "dev": "./build.sh && astro dev",
+    "format": "prettier --write src/**/*.{js,jsx,tsx,astro,scss,md}",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,scss}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kdelalic/karlodelalic.com"
+  },
+  "bugs": {
+    "url": "https://github.com/kdelalic/karlodelalic.com/issues"
+  }
+}

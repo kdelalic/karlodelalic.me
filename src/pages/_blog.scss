@@ -1,0 +1,51 @@
+@use "../globals/base" as *;
+
+.blog {
+  display: flex;
+  flex-direction: column;
+
+  &__post {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    text-align: left;
+
+    &:not(:last-child) {
+      box-shadow: 0 2px 0 0 $divider-shadow;
+
+      .#{$dark-class} & {
+        box-shadow: 0 2px 0 0 $divider-shadow-dark;
+      }
+    }
+
+    &__title {
+      margin-bottom: 5px;
+
+      &__link {
+        color: $primary-color;
+
+        &:hover {
+          color: $primary-color__hover;
+        }
+      }
+    }
+
+    &__excerpt {
+      line-height: 1.75;
+      margin-bottom: 15px;
+
+      .#{$dark-class} & {
+        color: white;
+      }
+    }
+
+    &__info {
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.54);
+      margin: 0;
+
+      .#{$dark-class} & {
+        color: white;
+      }
+    }
+  }
+}

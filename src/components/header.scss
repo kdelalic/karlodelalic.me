@@ -1,0 +1,185 @@
+@use "../globals/base" as *;
+
+header {
+  $header-height: 47px;
+
+  margin: 0 auto;
+  display: flex;
+  box-shadow: 0 2px 0 0 $divider-shadow;
+  align-items: center;
+
+  .#{$dark-class} & {
+    box-shadow: 0 2px 0 0 $divider-shadow-dark;
+  }
+
+  @media all and (max-width: $width-max) {
+    .brand {
+      margin-left: 20px;
+    }
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+
+    $logo-dimension: 24px;
+
+    &__logo {
+      height: $logo-dimension;
+      transition: transform 0.15s ease-in-out;
+
+      svg,
+      img {
+        height: $logo-dimension;
+        width: $logo-dimension;
+      }
+    }
+
+    &__logo:hover {
+      transform: scale(1.1);
+    }
+
+    &__name {
+      margin-left: 10px;
+
+      .#{$dark-class} & {
+        color: white;
+      }
+    }
+  }
+
+  .navbar {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+
+    &__item {
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #595959;
+      border-bottom: 1px solid transparent;
+      text-transform: capitalize;
+
+      .#{$dark-class} & {
+        color: white;
+      }
+
+      &:hover {
+        border-bottom: 1px solid $primary-color__hover;
+      }
+    }
+
+    .active {
+      color: $primary-color;
+    }
+  }
+
+  @media all and (min-width: $width-max) {
+    max-width: $width-max - 50px;
+    width: $width-max - 50px;
+  }
+
+  @media all and (max-width: ($width-max - 1px)) {
+    max-width: 100%;
+    width: 100%;
+
+    .#{$dark-class}-switch {
+      display: none;
+    }
+
+    .navbar {
+      display: none;
+
+      &__item {
+        border-bottom: none;
+        color: white;
+        text-transform: uppercase;
+        font-size: 40px;
+
+        &:hover {
+          color: $primary-color;
+          border-bottom: none;
+        }
+      }
+
+      &.open {
+        display: flex;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.92);
+        height: 100%;
+        text-align: center;
+        top: 0;
+        justify-content: center;
+        flex-direction: column;
+      }
+    }
+
+    .navbar-burger {
+      z-index: 200;
+      cursor: pointer;
+      display: block;
+      height: $header-height;
+      position: relative;
+      width: $header-height;
+      margin-left: auto;
+
+      &:hover {
+        background-color: #f1f1f1;
+
+        .#{$dark-class} & {
+          background-color: #424242;
+        }
+      }
+
+      span {
+        background-color: $primary-color;
+        display: block;
+        height: 1px;
+        left: calc(50% - 8px);
+        position: absolute;
+        transform-origin: center;
+        transition-duration: 86ms;
+        transition-property: background-color, opacity, transform;
+        transition-timing-function: ease-out;
+        width: 16px;
+
+        &:nth-child(1) {
+          top: calc(50% - 6px);
+        }
+
+        &:nth-child(2) {
+          top: calc(50% - 1px);
+        }
+
+        &:nth-child(3) {
+          top: calc(50% + 4px);
+        }
+      }
+
+      &.open {
+        &:hover {
+          background-color: transparent;
+        }
+
+        span {
+          background-color: white;
+
+          &:nth-child(1) {
+            transform: translateY(5px) rotate(45deg);
+          }
+
+          &:nth-child(2) {
+            opacity: 0;
+          }
+
+          &:nth-child(3) {
+            transform: translateY(-5px) rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+}

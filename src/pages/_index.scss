@@ -1,0 +1,89 @@
+@use "../globals/base" as *;
+
+.profile-image {
+  margin: 0 auto 1.45rem auto;
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  display: block;
+}
+
+.fullname {
+  color: #363636;
+  margin-bottom: 10px;
+  font-weight: 600;
+
+  .#{$dark-class} & {
+    color: white;
+  }
+}
+
+.occupation {
+  font-weight: 400;
+  color: #4a4a4a;
+  margin-bottom: 20px;
+
+  .#{$dark-class} & {
+    color: white;
+  }
+}
+
+.description {
+  color: #4a4a4a;
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 20px;
+
+  .#{$dark-class} & {
+    color: white;
+  }
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+
+  .link-button {
+    font-size: 18px;
+  }
+}
+
+.latest-post {
+  box-shadow: 0 -2px 0 0 $divider-shadow;
+  padding: 20px 0;
+  max-width: $width-large;
+  margin: 0 auto;
+
+  .#{$dark-class} & {
+    box-shadow: 0 -2px 0 0 $divider-shadow-dark;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+
+    &__link {
+      color: $primary-color;
+
+      &:hover {
+        color: $primary-color__hover;
+      }
+    }
+  }
+
+  &__excerpt {
+    font-size: 0.75rem;
+    color: #4a4a4a;
+    margin: 0;
+
+    .#{$dark-class} & {
+      color: white;
+    }
+  }
+}
