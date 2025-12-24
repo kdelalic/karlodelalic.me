@@ -42,7 +42,7 @@ const currentPath = Astro.url.pathname
       ))
     }
   </nav>
-  <DarkModeSwitch client:load />
+  <DarkModeSwitch client:load transition:persist />
 </header>
 
 <script>
