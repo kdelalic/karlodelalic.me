@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content"
+import { Image } from "astro:assets"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Header from "../components/Header.astro"
 import { FaGithub, FaPencilAlt } from "react-icons/fa"
@@ -23,10 +24,12 @@ const keywords = [
 
 <BaseLayout keywords={keywords} centered={true} hidePageTitle={true}>
   <Header slot="header" />
-  <img
+  <Image
     class="profile-image"
     src="/profile.png"
-    alt="profile image"
+    alt="Karlo Delalic's profile"
+    width={200}
+    height={200}
     loading="eager"
   />
   <h1 class="fullname">Karlo Delalic</h1>
@@ -55,7 +58,7 @@ const keywords = [
           <span class="tag">Latest writing</span>
         </h3>
         <p class="latest-post__excerpt">
-          {latestPost.body.split('<!-- end -->')[0].trim()}
+          {latestPost.body.split("<!-- end -->")[0].trim()}
         </p>
       </div>
     )

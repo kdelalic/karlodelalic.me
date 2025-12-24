@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Header from "../components/Header.astro"
-import Project from "../components/Project"
+import Project from "../components/Project.astro"
 
 const projects = await getCollection("projects")
 
@@ -41,7 +41,7 @@ const keywords = [
   <Header slot="header" />
   <div class="projects">
     {
-      projects.map((project) => {
+      projects.map((project, index) => {
         let projectLogoSrc = undefined
         if (project.data.projectLogo) {
           const logoFilename =
@@ -50,10 +50,10 @@ const keywords = [
               : project.data.projectLogo.src.split("/").pop()
           projectLogoSrc = `/projects/${project.slug}/${logoFilename}`
         }
+        // First 6 projects are above the fold
+        const isAboveFold = index < 6
         return (
           <Project
-            client:load
-            key={project.id}
             description={project.data.description}
             github={project.data.github}
             technologies={project.data.technologies || []}
@@ -61,6 +61,7 @@ const keywords = [
             demo={project.data.demo}
             techLogos={techLogos}
             projectLogo={projectLogoSrc}
+            isAboveFold={isAboveFold}
           />
         )
       })

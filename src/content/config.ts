@@ -14,14 +14,14 @@ const blog = defineCollection({
 
 const recipes = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     type: z.enum(['recipe', 'custom-recipe']),
     tags: z.array(z.string()).optional(),
     source: z.string().optional(),
     notes: z.string().optional(),
     ingredients: z.array(z.string()).optional(),
-    image: z.string().optional(),
+    image: image().optional(),
   }),
 });
 

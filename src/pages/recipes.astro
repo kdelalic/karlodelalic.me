@@ -7,31 +7,34 @@ import RecipesClient from '../components/RecipesClient';
 
 const allRecipes = await getCollection('recipes');
 
-// Prepare recipes data for the client component
-const recipesData = allRecipes.map((recipe) => {
-  let imageSrc = null;
+// Prepare recipes data for the client component with optimized images
+const recipesData = await Promise.all(
+  allRecipes.map(async (recipe) => {
+    let imageSrc = null;
 
-  if (recipe.data.image) {
-    // Get the image filename - it's just a string like "image.webp"
-    const imageFilename = typeof recipe.data.image === 'string'
-      ? recipe.data.image
-      : recipe.data.image.src.split('/').pop();
+    if (recipe.data.image) {
+      // Get the optimized image using Astro's getImage
+      const optimizedImage = await getImage({
+        src: recipe.data.image,
+        width: 600,
+        height: 400,
+        format: 'webp',
+      });
+      imageSrc = optimizedImage.src;
+    }
 
-    // Build the path to the image in the public directory
-    imageSrc = `/recipes/${recipe.slug}/${imageFilename}`;
-  }
-
-  return {
-    id: recipe.id,
-    title: recipe.data.title,
-    tags: recipe.data.tags || [],
-    source: recipe.data.source,
-    notes: recipe.data.notes,
-    type: recipe.data.type,
-    slug: recipe.slug.includes('custom-recipes') ? `/custom-recipes/${recipe.slug.split('/')[1]}` : null,
-    image: imageSrc,
-  };
-});
+    return {
+      id: recipe.id,
+      title: recipe.data.title,
+      tags: recipe.data.tags || [],
+      source: recipe.data.source,
+      notes: recipe.data.notes,
+      type: recipe.data.type,
+      slug: recipe.slug.includes('custom-recipes') ? `/custom-recipes/${recipe.slug.split('/')[1]}` : null,
+      image: imageSrc,
+    };
+  })
+);
 
 const keywords = ['karlo delalic', 'portfolio', 'distributed systems', 'software engineer', 'recipes'];
 ---
